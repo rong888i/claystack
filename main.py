@@ -30,7 +30,7 @@ class EthHandler:
 
     def getNextClaim(self):
         nexttime = self.contract.functions.userNextClaim(self.my_address).call()
-        if nexttime[1] != 1:
+        if nexttime[1] != 0:
             print("未到收集时间", self.my_address, nexttime[0])
         return nexttime[1]
 
