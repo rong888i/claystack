@@ -54,15 +54,18 @@ class EthHandler:
 
 rpc = 'https://eth-goerli.alchemyapi.io/v2/OePDKEAtMy2lr5W5J8aBCML6qYmeCaFX'
 Contract_address = "0x7b067b776dec24cf0c2390e76dea20217e75d9f7"
-abi = open(r"D:\python\claystack.json", "r").read()  # abi路径
+abi = r"D:\python\abi\claystack.json"  # abi路径
+
 key = {
 }  # key
 
-while True:
-    for keys in key:
-        eth = EthHandler(rpc=rpc, Contract_Add=Contract_address, abi=abi, key=keys)
-        eth.getUserStart()
-        claim = eth.getNextClaim()
-        if claim == 0:
-            print("收集", eth.get_sign())
-    sleep(60 * 30)
+with open(abi, "r") as abi:
+    abi = abi.read()
+    while True:
+        for keys in key:
+            eth = EthHandler(rpc=rpc, Contract_Add=Contract_address, abi=abi, key=keys)
+            eth.getUserStart()
+            claim = eth.getNextClaim()
+            if claim == 0:
+                print("收集", eth.get_sign())
+        sleep(60 * 30)
